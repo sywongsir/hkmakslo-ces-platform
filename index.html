@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>羅桂祥X現代：公經社科學習平台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#F3F5FA; --surface:#FFFFFF; --surface-2:#E9EDF7; --line:#D3D9EA;
+  --ink:#121638; --ink-2:#4A5175; --ink-3:#6F7697;
+  --navy:#142A8C; --navy-ink:#FFFFFF; --red:#D2192B; --gold:#F2BE00; --gold-ink:#3A2C00;
+  --d1:#C98A00; --d1-bg:#FFF4D1; /* 個人與群性發展 */
+  --d5:#C0182A; --d5-bg:#FDE4E6; /* 資源與經濟活動 */
+  --d6:#142A8C; --d6-bg:#E3E8FB; /* 社會體系與公民精神 */
+  --on-c:#FFFFFF; --head:#142A8C; --hl:#FFE58A; --ok:#137A3E; --ok-bg:#DDF3E5; --bad:#B4162A; --bad-bg:#FBE1E4;
+  --serif:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Heiti TC",sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#0D1130; --surface:#161B42; --surface-2:#1F2556; --line:#2E3670;
+    --ink:#EEF0FB; --ink-2:#B7BDE0; --ink-3:#8D93BC;
+    --navy:#8EA2FF; --navy-ink:#0D1130; --red:#FF6B78; --gold:#FFD54A; --gold-ink:#2A2000;
+    --d1:#FFD54A; --d1-bg:#3A3110; --d5:#FF7A86; --d5-bg:#40172A; --d6:#9AACFF; --d6-bg:#232C66;
+    --on-c:#0D1130; --head:#1B2577; --hl:rgba(255,213,74,.35); --ok:#6BD99A; --ok-bg:#163A28; --bad:#FF8592; --bad-bg:#43192A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0D1130; --surface:#161B42; --surface-2:#1F2556; --line:#2E3670;
+  --ink:#EEF0FB; --ink-2:#B7BDE0; --ink-3:#8D93BC;
+  --navy:#8EA2FF; --navy-ink:#0D1130; --red:#FF6B78; --gold:#FFD54A; --gold-ink:#2A2000;
+  --d1:#FFD54A; --d1-bg:#3A3110; --d5:#FF7A86; --d5-bg:#40172A; --d6:#9AACFF; --d6-bg:#232C66;
+  --on-c:#0D1130; --head:#1B2577; --hl:rgba(255,213,74,.35); --ok:#6BD99A; --ok-bg:#163A28; --bad:#FF8592; --bad-bg:#43192A;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--head)}
+img{max-width:100%}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--head);color:#fff}
+.top-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:8px 16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;min-width:0}
+.crest-sm{width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;overflow:hidden}
+.crest-sm img{width:34px;height:auto}
+.mod-sm{width:40px;height:40px;border-radius:8px;background:#fff;display:grid;place-items:center;flex:none;overflow:hidden}
+.mod-sm img{width:36px;height:auto}
+.logos{display:flex;align-items:center;gap:14px}
+.logos .x{font-family:var(--serif);font-weight:900;font-size:26px;color:var(--ink-3)}
+.mod-lg{width:122px;height:122px;border-radius:20px;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 6px var(--surface),0 0 0 8px #D6324E}
+.mod-lg img{width:104px}
+.brand-t{font-family:var(--serif);font-weight:900;font-size:17px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-t small{display:block;font-family:var(--sans);font-weight:500;font-size:12px;opacity:.85}
+.top-sp{flex:1}
+
+main{max-width:1120px;margin:0 auto;padding:20px 16px 64px}
+
+/* home */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;padding:24px 0 28px;border-bottom:2px solid var(--line)}
+.crest-lg{width:132px;height:132px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 6px var(--surface),0 0 0 8px var(--red)}
+.crest-lg img{width:104px}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(30px,5vw,48px);line-height:1.15;margin:0 0 6px;letter-spacing:.02em}
+.hero .by{font-size:15px;color:var(--ink-2);margin:0 0 10px}
+.hero p.lead{margin:0;max-width:40em;color:var(--ink-2)}
+.stats{display:flex;flex-wrap:wrap;gap:20px;margin-top:14px;font-size:14px;color:var(--ink-2)}
+.stats b{font-family:var(--serif);font-size:22px;color:var(--ink);margin-right:4px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:22px 0 10px;font-size:14px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+.years{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.year h2{font-family:var(--serif);font-weight:900;font-size:26px;margin:8px 0 10px;display:flex;align-items:baseline;gap:10px}
+.year h2 small{font-family:var(--sans);font-weight:400;font-size:13px;color:var(--ink-3)}
+.tile{display:grid;grid-template-columns:62px 1fr;gap:4px 12px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:6px 12px 12px 6px;padding:12px 14px;margin-bottom:12px;text-decoration:none;color:inherit}
+.tile:hover{border-color:var(--c)}
+.tile .num{font-family:var(--serif);font-weight:900;font-size:30px;line-height:1;color:var(--c);grid-row:span 2;align-self:center}
+.tile .tt{font-weight:700;font-size:17px;line-height:1.4}
+.tile .meta{font-size:13px;color:var(--ink-3);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bar{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden;width:80px;display:inline-block;vertical-align:middle}
+.bar i{display:block;height:100%;background:var(--c)}
+.note{font-size:13px;color:var(--ink-3);margin-top:28px;max-width:60em}
+
+/* unit */
+.crumb{display:flex;gap:8px;align-items:center;font-size:14px;margin-bottom:8px}
+.crumb a{color:var(--ink-2)}
+.uhead{border-left:8px solid var(--c);padding:4px 0 4px 16px;margin:4px 0 16px}
+.uhead .num{font-family:var(--serif);font-weight:900;color:var(--c);font-size:20px}
+.uhead h1{font-family:var(--serif);font-weight:900;font-size:clamp(26px,4.4vw,38px);line-height:1.25;margin:0}
+.uhead .meta{font-size:14px;color:var(--ink-2)}
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:2px solid var(--line);margin-bottom:20px;scrollbar-width:none}
+.tabs a{flex:none;padding:10px 14px;text-decoration:none;color:var(--ink-2);font-weight:500;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap}
+.tabs a[aria-current="page"]{color:var(--ink);border-color:var(--c);font-weight:700}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+.panel h2{font-family:var(--serif);font-size:21px;margin:0 0 10px}
+.panel h3{font-size:16px;margin:14px 0 6px}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cols3 h3{margin-top:0;display:flex;align-items:center;gap:8px}
+.cols3 ul{margin:0;padding-left:1.2em;font-size:15px}
+.qlist{margin:0;padding-left:1.6em}
+.qlist li{margin:4px 0}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:7px 14px;font-size:15px;font-weight:500}
+.btn:hover{border-color:var(--ink-3)}
+.btn.pri{background:var(--c,var(--navy));border-color:var(--c,var(--navy));color:var(--on-c)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* mind map */
+.map-root{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+.br{border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--surface)}
+.br>summary{list-style:none;cursor:pointer;padding:10px 14px;font-weight:700;font-size:17px;display:flex;gap:10px;align-items:center;background:var(--cbg);border-radius:10px}
+.br[open]>summary{border-radius:10px 10px 0 0}
+.br>summary::-webkit-details-marker{display:none}
+.br>summary::before{content:"▸";color:var(--c);transition:transform .15s}
+.br[open]>summary::before{transform:rotate(90deg)}
+.br-body{padding:8px 14px 12px}
+.node{margin:8px 0;padding-left:14px;border-left:2px solid var(--line)}
+.node>.nt{font-weight:500}
+.node>.nt.has{font-weight:700}
+.leafs{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.leafs span{background:var(--surface-2);border-radius:6px;padding:2px 10px;font-size:14px}
+
+/* vocab */
+.flash{perspective:1200px;max-width:560px;margin:0 auto}
+.card{position:relative;min-height:240px;transform-style:preserve-3d;transition:transform .45s;cursor:pointer}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px}
+.face.back{transform:rotateY(180deg);background:var(--cbg);text-align:left;align-items:flex-start}
+.face .zh{font-family:var(--serif);font-weight:900;font-size:clamp(26px,6vw,36px);line-height:1.3}
+.face .en{color:var(--ink-2);margin-top:6px}
+.face .pg{font-size:13px;color:var(--ink-3);margin-top:14px}
+.face .def{font-size:17px;line-height:1.8}
+.vlist{display:grid;gap:10px}
+.vitem{border-bottom:1px solid var(--line);padding:8px 0}
+.vitem b{font-family:var(--serif);font-size:18px}
+.vitem .en{color:var(--ink-2);font-size:14px;margin-left:6px}
+.vk{display:inline-block;font-size:12px;font-weight:700;border-radius:4px;padding:1px 8px;background:var(--surface-2);color:var(--ink-2);margin-bottom:6px}
+.vk.ext{background:var(--cbg);color:var(--c)}
+.chip.on{background:var(--c,var(--navy));border-color:var(--c,var(--navy));color:var(--on-c)}
+.mk{font-size:12px;border-radius:4px;padding:1px 6px;margin-left:6px;background:var(--ok-bg);color:var(--ok)}
+input[type=search],textarea{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 12px;width:100%}
+textarea{min-height:150px;line-height:1.7;resize:vertical}
+
+/* quiz */
+.qcard{max-width:720px}
+.qtext{white-space:pre-line;font-size:17px;margin:4px 0 14px}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:4px;padding:1px 8px;background:var(--surface-2);color:var(--ink-2);margin-right:6px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;text-align:left;width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 14px;font-size:16px;align-items:flex-start}
+.opt:hover:not([disabled]){border-color:var(--c)}
+.opt .k{font-weight:700;color:var(--ink-3);flex:none;width:1.4em}
+.opt.ok{background:var(--ok-bg);border-color:var(--ok)}
+.opt.bad{background:var(--bad-bg);border-color:var(--bad)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:12px;padding:10px 14px;border-radius:10px;background:var(--surface-2)}
+.fb b.ok{color:var(--ok)} .fb b.bad{color:var(--bad)}
+.prog{font-size:14px;color:var(--ink-3);margin-bottom:6px}
+.score{font-family:var(--serif);font-weight:900;font-size:56px;color:var(--c);line-height:1}
+
+/* dbq */
+.src{border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:0 0 14px;background:var(--surface)}
+.src h3{margin:0 0 6px;font-size:15px}
+.src h3 span{color:var(--c);font-family:var(--serif);font-weight:900;margin-right:6px}
+.src .txt{white-space:pre-line}
+.src .sn{font-size:13px;color:var(--ink-3);margin-top:6px}
+.scroll{overflow-x:auto}
+table.dt{border-collapse:collapse;font-size:14px;min-width:100%}
+table.dt th,table.dt td{border:1px solid var(--line);padding:5px 10px;text-align:center;white-space:nowrap}
+table.dt th{background:var(--surface-2)}
+table.dt td:first-child{text-align:left}
+.vbars{display:flex;align-items:flex-start;padding:18px 4px 0;min-width:max-content}
+.vg{display:flex;flex-direction:column;align-items:center;width:66px}
+.vg .bs{display:flex;align-items:flex-end;justify-content:center;gap:2px;height:200px;width:100%;border-bottom:1px solid var(--ink-3)}
+.vg .vl{font-size:12px;color:var(--ink-2);text-align:center;line-height:1.3;padding:4px 2px 0}
+.vb{width:16px;position:relative;border-radius:3px 3px 0 0}
+.vb em{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-style:normal;font-size:10px;color:var(--ink-2);white-space:nowrap}
+.hb{display:grid;grid-template-columns:minmax(120px,40%) 1fr;gap:6px 10px;align-items:center;font-size:14px}
+.hb .lbl{line-height:1.4}
+.hb .trk{display:flex;align-items:center;gap:6px}
+.hb .trk i{display:block;height:16px;background:var(--red);border-radius:0 3px 3px 0}
+.keyrow{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin-top:8px}
+.dq{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.dq:first-child{border-top:0;padding-top:0;margin-top:0}
+.dq-h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.dq-h .qid{font-family:var(--serif);font-weight:900;color:var(--c)}
+.dq-h .mk2{margin-left:auto;font-size:14px;color:var(--ink-3)}
+.scaffold{font-size:14px;color:var(--ink-2);background:var(--surface-2);border-radius:8px;padding:8px 12px;margin:8px 0}
+.model{white-space:pre-line;background:var(--cbg);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:15px}
+.aires{border:2px solid var(--c);border-radius:10px;padding:12px 14px;margin-top:10px}
+.aires .sc{font-family:var(--serif);font-weight:900;font-size:28px;color:var(--c)}
+.aires ul{margin:4px 0 8px;padding-left:1.2em}
+.muted{color:var(--ink-3);font-size:14px}
+
+/* 課本搜尋 */
+.sbox{display:flex;gap:8px;margin:8px 0 10px}
+.sbox input{flex:1}
+.scope{font-size:14px;color:var(--ink-2);gap:16px;margin-bottom:10px}
+.scope label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:14px;text-align:left}
+.chip:hover{border-color:var(--c,var(--navy))}
+.hit{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--hc);border-radius:6px 10px 10px 6px;padding:10px 14px;margin-bottom:10px}
+.hit:hover{border-color:var(--hc)}
+.hit-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px}
+.hit-h .hu{font-weight:700;color:var(--hc)}
+.hit .ht{font-weight:700;font-size:16px;margin-top:2px}
+.hit .ht .en{font-weight:400;color:var(--ink-2);font-size:14px}
+.hit .hx{font-size:15px;color:var(--ink-2)}
+mark{background:var(--hl);color:inherit;border-radius:2px}
+/* 評分點自評 */
+.rub{border:2px solid var(--c);border-radius:10px;padding:12px 14px;margin-top:10px}
+.rub-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.rub-h .scv{font-family:var(--serif);font-weight:900;font-size:26px;color:var(--c)}
+.struct{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;margin:6px 0}
+.struct .y{color:var(--ok)} .struct .n{color:var(--bad)}
+.pts{margin:8px 0;padding-left:1.4em}
+.pts li{margin:8px 0}
+.pts label{display:flex;gap:8px;align-items:flex-start;cursor:pointer}
+.pts input{margin-top:.45em;flex:none;width:18px;height:18px;accent-color:var(--c)}
+.pts em.m{font-style:normal;color:var(--ink-3);font-size:14px}
+.found{display:inline-block;font-size:12px;background:var(--ok-bg);color:var(--ok);border-radius:4px;padding:0 6px;margin-left:6px}
+
+@media (max-width:860px){
+  .years{grid-template-columns:1fr}
+  .cols3{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .hero{grid-template-columns:1fr;text-align:left}
+  .crest-lg{width:96px;height:96px}.crest-lg img{width:76px}
+  .mod-lg{width:90px;height:90px;border-radius:16px}.mod-lg img{width:76px}
+  .brand-t{font-size:15px}
+  .panel{padding:14px}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <a class="brand" href="#"><span class="crest-sm"><img src="assets/crest.jpg" alt="香港管理專業協會羅桂祥中學校徽"></span>
+  <span class="mod-sm"><img src="assets/modern.jpg" alt="現代教育研究社標誌"></span>
+  <span class="brand-t">羅桂祥X現代<small>公經社科學習平台</small></span></a>
+  <span class="top-sp"></span>
+</div></header>
+<main id="app"></main>
+<script src="data/units.js"></script>
+<script>
+const UNITS = window.UNITS;
+const CREST = "assets/crest.jpg";
+const MODERN = "assets/modern.jpg";
+const DOMAIN = {
+  "個人與群性發展": {c:"var(--d1)", bg:"var(--d1-bg)"},
+  "資源與經濟活動": {c:"var(--d5)", bg:"var(--d5-bg)"},
+  "社會體系與公民精神": {c:"var(--d6)", bg:"var(--d6-bg)"}
+};
+const TABS = [["","重點溫習"],["vocab","重要詞彙"],["quiz","課前小測"],["dbq","資料回應題"],["search","課本搜尋"]];
+const LET = "ABCD";
+const app = document.getElementById("app");
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const slug = id => "u" + id.replace(".", "");
+const byslug = s => UNITS.find(u => slug(u.id) === s);
+
+/* storage: per-viewer progress, kept in this browser only */
+const store = {
+  get(k, d){ try { const v = localStorage.getItem("cesp:" + k); return v ? JSON.parse(v) : d; } catch(e){ return d; } },
+  set(k, v){ try { localStorage.setItem("cesp:" + k, JSON.stringify(v)); } catch(e){} }
+};
+let PROG = store.get("prog", {});
+const P = id => (PROG[id] = PROG[id] || {quiz:null, vocab:[], dbq:{}});
+const saveP = () => store.set("prog", PROG);
+function unitPct(u){
+  const p = PROG[u.id]; if(!p) return 0;
+  const q = p.quiz == null ? 0 : p.quiz;
+  const v = u.vocab.length ? p.vocab.length / u.vocab.length : 0;
+  const open = u.dbq.qs.length;
+  const d = open ? Object.keys(p.dbq).length / open : 0;
+  return Math.round((q + v + d) / 3 * 100);
+}
+
+/* routing via hash: #u11, #u11-quiz … */
+window.addEventListener("hashchange", route);
+function route(){
+  const h = decodeURIComponent(location.hash.slice(1));
+  const [s, tab = ""] = h.split("-");
+  const u = s ? byslug(s) : null;
+  if (!u) { home(); return; }
+  unitPage(u, TABS.some(t => t[0] === tab) ? tab : "");
+}
+
+function home(){
+  document.title = "羅桂祥X現代：公經社科學習平台";
+  const done = UNITS.filter(u => unitPct(u) >= 100).length;
+  const started = UNITS.filter(u => unitPct(u) > 0).length;
+  const quizzes = UNITS.reduce((a,u) => a + u.mcq.length, 0);
+  const vocab = UNITS.reduce((a,u) => a + u.vocab.length, 0);
+  const vext = UNITS.reduce((a,u) => a + u.vocab.filter(v => v[4]).length, 0);
+  const grades = ["中一","中二","中三"];
+  app.innerHTML = `
+  <section class="hero">
+    <div class="logos"><div class="crest-lg"><img src="${CREST}" alt="香港管理專業協會羅桂祥中學校徽"></div><span class="x" aria-hidden="true">×</span><div class="mod-lg"><img src="${MODERN}" alt="現代教育研究社標誌"></div></div>
+    <div>
+      <h1>公經社科學習平台</h1>
+      <p class="by">香港管理專業協會羅桂祥中學 × 現代教育研究社</p>
+      <p class="lead">上課前先預習：看概念圖、記重要詞彙，再做 20 題課前小測，檢查自己掌握了多少。之後用「論點→申論→小結」練資料回應題，寫完後逐點對照評分點自評。有不明白的詞語，可以用課本搜尋。</p>
+      <div class="stats"><span><b>12</b>個單元</span><span><b>${vocab}</b>個詞彙${vext ? `（課本 ${vocab - vext}＋延伸 ${vext}）` : ""}</span><span><b>${quizzes}</b>條小測題</span><span><b>${started}</b>個單元已開始</span><span><b>${done}</b>個單元已完成</span></div>
+    </div>
+  </section>
+  <div id="homeSearch" style="margin-top:20px"></div>
+  <div class="legend">${Object.entries(DOMAIN).map(([k,v]) => `<span><i class="dot" style="background:${v.c}"></i>${k}</span>`).join("")}</div>
+  <div class="years">${grades.map(g => {
+    const us = UNITS.filter(u => u.grade === g);
+    return `<section class="year"><h2>${g}<small>${us.reduce((a,u)=>a+u.periods,0)} 節</small></h2>${us.map(tile).join("")}</section>`;
+  }).join("")}</div>
+  <p class="note">內容整理自現代教育研究社《公民、經濟與社會》教師用書，並對照教育局《公民、經濟與社會課程指引（中一至中三）》（2024）。學習進度只儲存在你這部裝置的瀏覽器內。</p>`;
+  searchUI(document.getElementById("homeSearch"), null);
+  window.scrollTo(0,0);
+}
+function tile(u){
+  const d = DOMAIN[u.domain], pct = unitPct(u);
+  return `<a class="tile" href="#${slug(u.id)}" style="--c:${d.c}">
+    <span class="num">${u.id}</span>
+    <span class="tt">${esc(u.title)}</span>
+    <span class="meta"><span>${u.periods} 節</span><span class="bar" aria-hidden="true"><i style="width:${pct}%"></i></span><span>完成 ${pct}%</span></span>
+  </a>`;
+}
+
+function unitPage(u, tab){
+  const d = DOMAIN[u.domain];
+  document.title = `單元 ${u.id} ${u.title}｜公經社科學習平台`;
+  app.style.setProperty("--c", d.c); app.style.setProperty("--cbg", d.bg);
+  app.innerHTML = `
+  <nav class="crumb"><a href="#">全部單元</a><span aria-hidden="true">/</span><span>${u.grade}</span></nav>
+  <header class="uhead"><div class="num">單元 ${u.id}</div><h1>${esc(u.title)}</h1>
+    <div class="meta">${u.domain}　建議 ${u.periods} 節　完成 ${unitPct(u)}%</div></header>
+  <nav class="tabs">${TABS.map(([k,l]) => `<a href="#${slug(u.id)}${k ? "-" + k : ""}" ${k===tab ? 'aria-current="page"' : ""}>${l}</a>`).join("")}</nav>
+  <div id="pane"></div>`;
+  const pane = document.getElementById("pane");
+  ({"":review, vocab, quiz, dbq, search: (u, el) => searchUI(el, u)})[tab](u, pane);
+  window.scrollTo(0,0);
+}
+
+/* 重點溫習 */
+function review(u, el){
+  const o = u.objectives;
+  el.innerHTML = `
+  <section class="panel"><h2>問題導入</h2><ol class="qlist">${u.questions.map(q => `<li>${esc(q)}</li>`).join("")}</ol></section>
+  <section class="panel"><h2>學習目標</h2><div class="cols3">
+    <div><h3><i class="dot" style="background:var(--d6)"></i>知識</h3><ul>${o.k.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+    <div><h3><i class="dot" style="background:var(--d1)"></i>技能</h3><ul>${o.s.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+    <div><h3><i class="dot" style="background:var(--d5)"></i>價值觀和態度</h3><ul>${o.v.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+  </div></section>
+  <section class="panel"><div class="row" style="justify-content:space-between;margin-bottom:8px"><h2 style="margin:0">單元總結</h2>
+    <div class="row"><button class="btn" id="openAll">全部展開</button><button class="btn" id="closeAll">全部收起</button></div></div>
+    <p class="map-root">${esc(u.map.t)}</p>
+    ${u.map.c.map(b => `<details class="br" open><summary>${esc(b.t)}</summary><div class="br-body">${(b.c||[]).map(node).join("")}</div></details>`).join("")}
+  </section>`;
+  el.querySelector("#openAll").onclick = () => el.querySelectorAll("details").forEach(d => d.open = true);
+  el.querySelector("#closeAll").onclick = () => el.querySelectorAll("details").forEach(d => d.open = false);
+}
+function node(n){
+  if (!n.c || !n.c.length) return `<div class="node"><div class="nt">${esc(n.t)}</div></div>`;
+  const allLeaf = n.c.every(x => !x.c || !x.c.length);
+  return `<div class="node"><div class="nt has">${esc(n.t)}</div>${allLeaf
+    ? `<div class="leafs">${n.c.map(x => `<span>${esc(x.t)}</span>`).join("")}</div>`
+    : n.c.map(node).join("")}</div>`;
+}
+
+/* 重要詞彙：課本重要詞彙（課本列出）及延伸詞彙（取自課本內文） */
+const VK = v => v[4] ? "延伸詞彙" : "課本重要詞彙";
+function vocab(u, el){
+  const p = P(u.id); let mode = "card", filt = "all", pos = 0;
+  const nExt = u.vocab.filter(v => v[4]).length;
+  const ids = () => u.vocab.map((v, k) => k).filter(k => filt === "all" || (filt === "ext") === !!u.vocab[k][4]);
+  const bar = () => `<div class="row" style="justify-content:space-between;margin-bottom:12px">
+    <div class="chips" role="group" aria-label="篩選詞彙">${nExt ? [["all", `全部（${u.vocab.length}）`], ["core", `課本重要詞彙（${u.vocab.length - nExt}）`], ["ext", `延伸詞彙（${nExt}）`]]
+      .map(([k, l]) => `<button class="chip ${filt === k ? "on" : ""}" data-f="${k}" aria-pressed="${filt === k}">${l}</button>`).join("") : ""}</div>
+    <button class="btn" id="mode">${mode === "card" ? "改為列表" : "改為詞卡"}</button></div>`;
+  const bindBar = () => {
+    el.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filt = b.dataset.f; pos = 0; draw(); });
+    el.querySelector("#mode").onclick = () => { mode = mode === "card" ? "list" : "card"; draw(); };
+  };
+  const draw = () => {
+    const L = ids(); if (pos >= L.length) pos = 0;
+    if (mode === "card") {
+      const k = L[pos], v = u.vocab[k], known = p.vocab.includes(k);
+      el.innerHTML = bar() + `
+      <p class="prog">第 ${pos + 1} / ${L.length} 個　已掌握 ${p.vocab.length} / ${u.vocab.length} 個</p>
+      <div class="flash"><div class="card" id="card" role="button" tabindex="0" aria-label="按一下翻轉詞卡">
+        <div class="face front"><span class="vk ${v[4] ? "ext" : ""}">${VK(v)}</span><div class="zh">${esc(v[0])}</div><div class="en">${esc(v[1])}</div><div class="pg">課本第 ${v[2]} 頁　按一下看定義</div></div>
+        <div class="face back"><div class="zh" style="font-size:22px">${esc(v[0])}</div><div class="def">${esc(v[3])}</div></div>
+      </div>
+      <div class="row" style="justify-content:center;margin-top:16px">
+        <button class="btn" id="prev">上一個</button>
+        <button class="btn" id="again">要再溫</button>
+        <button class="btn pri" id="got">${known ? "已掌握" : "我記得了"}</button>
+        <button class="btn" id="next">下一個</button>
+      </div></div>`;
+      bindBar();
+      const card = el.querySelector("#card");
+      const flip = () => card.classList.toggle("flip");
+      card.onclick = flip; card.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(); } };
+      const step = d => { pos = (pos + d + L.length) % L.length; draw(); };
+      el.querySelector("#prev").onclick = () => step(-1);
+      el.querySelector("#next").onclick = () => step(1);
+      el.querySelector("#got").onclick = () => { if (!p.vocab.includes(k)) p.vocab.push(k); saveP(); step(1); };
+      el.querySelector("#again").onclick = () => { p.vocab = p.vocab.filter(x => x !== k); saveP(); step(1); };
+    } else {
+      el.innerHTML = bar() + `
+      <input type="search" id="q" placeholder="搜尋詞彙或定義" style="max-width:320px;margin-bottom:12px" aria-label="搜尋詞彙">
+      <div class="panel vlist" id="vl"></div>`;
+      bindBar();
+      const vl = el.querySelector("#vl"), q = el.querySelector("#q");
+      const list = () => {
+        const t = q.value.trim().toLowerCase();
+        const rows = L.filter(k => !t || u.vocab[k].slice(0, 4).join(" ").toLowerCase().includes(t));
+        vl.innerHTML = rows.length ? rows.map(k => { const v = u.vocab[k]; return `<div class="vitem"><span class="vk ${v[4] ? "ext" : ""}">${VK(v)}</span><br><b>${esc(v[0])}</b><span class="en">${esc(v[1])}</span><span class="muted">（頁 ${v[2]}）</span>${p.vocab.includes(k) ? '<span class="mk">已掌握</span>' : ""}<div>${esc(v[3])}</div></div>`; }).join("")
+          : `<p class="muted">找不到「${esc(q.value.trim())}」。試試輸入較短的字詞。</p>`;
+      };
+      q.oninput = list; list();
+    }
+  };
+  draw();
+}
+
+/* 課前小測 */
+function quiz(u, el){
+  const p = P(u.id);
+  let order, i, right, answered;
+  const start = () => { order = u.mcq.map((_,k) => k).sort(() => Math.random() - .5); i = 0; right = 0; answered = false; draw(); };
+  const draw = () => {
+    if (i >= order.length) {
+      const pct = right / order.length;
+      if (p.quiz == null || pct > p.quiz) p.quiz = pct; saveP();
+      el.innerHTML = `<section class="panel qcard"><p class="prog">完成小測</p>
+        <div class="score">${right} / ${order.length}</div>
+        <p>${pct === 1 ? "全部答對，預習做得很好！上課時可以專注思考和討論。" : pct >= .6 ? "不錯！記下答錯的題目，上課時特別留意。" : "先回到「重點溫習」和「重要詞彙」看一看，再試一次。"}</p>
+        <p class="muted">最佳成績：${Math.round(p.quiz*100)}%</p>
+        <div class="row"><button class="btn pri" id="re">再做一次</button><a class="btn" href="#${slug(u.id)}">重點溫習</a></div></section>`;
+      el.querySelector("#re").onclick = start; return;
+    }
+    const q = u.mcq[order[i]];
+    el.innerHTML = `<section class="panel qcard">
+      <p class="prog">第 ${i+1} / ${order.length} 題　答對 ${right} 題</p>
+      <div><span class="tag">${q.fill ? "填充" : "選擇"}</span></div>
+      <div class="qtext">${esc(q.q)}</div>
+      <div class="opts">${q.o.map((o,k) => `<button class="opt" data-k="${k}"><span class="k">${LET[k]}</span><span>${esc(o)}</span></button>`).join("")}</div>
+      <div id="fb"></div></section>`;
+    el.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+      if (answered) return; answered = true;
+      const k = +b.dataset.k, ok = k === q.a; if (ok) right++;
+      el.querySelectorAll(".opt").forEach(x => { x.disabled = true; const kk = +x.dataset.k;
+        if (kk === q.a) x.classList.add("ok"); else if (kk === k) x.classList.add("bad"); });
+      el.querySelector("#fb").innerHTML = `<div class="fb"><b class="${ok?"ok":"bad"}">${ok ? "答對了。" : `答案是 ${LET[q.a]}。`}</b> ${esc(q.e||"")}</div>
+        <div class="row" style="margin-top:12px"><button class="btn pri" id="nx">${i+1 < order.length ? "下一題" : "看成績"}</button></div>`;
+      el.querySelector("#nx").onclick = () => { i++; answered = false; draw(); };
+      el.querySelector("#nx").focus();
+    });
+  };
+  start();
+}
+
+/* 資料回應題 */
+function srcHTML(s){
+  let body = "";
+  if (s.type === "text") body = `<div class="txt">${esc(s.text)}</div>`;
+  else if (s.type === "table") body = `<div class="scroll"><table class="dt"><thead><tr>${s.head.map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${s.rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  else if (s.type === "bar") {
+    const max = Math.max(...s.data.flat()); const cols = ["var(--navy)","var(--red)","var(--gold)"];
+    body = `<div class="scroll"><div class="vbars">${s.cats.map((c,ci) => `<div class="vg"><div class="bs">${s.data.map((ser,si) =>
+      `<div class="vb" style="height:${ser[ci]/max*180}px;background:${cols[si]}" title="${esc(s.series[si])} ${ser[ci]}"><em>${ser[ci].toLocaleString("en")}</em></div>`).join("")}</div><span class="vl">${esc(c)}</span></div>`).join("")}</div></div>
+      <div class="keyrow">${s.series.map((n,si)=>`<span><i class="dot" style="background:${cols[si]}"></i> ${esc(n)}</span>`).join("")}<span>單位：${esc(s.unit)}</span></div>`;
+  } else if (s.type === "hbar") {
+    const max = Math.max(...s.data);
+    body = `<div class="hb">${s.cats.map((c,k)=>`<div class="lbl">${esc(c)}</div><div class="trk"><i style="width:${s.data[k]/max*85}%"></i><span>${s.data[k]}${esc(s.unit)}</span></div>`).join("")}</div>`;
+  }
+  return `<div class="src"><h3><span>${esc(s.label)}</span>${esc(s.title)}</h3>${body}${s.note ? `<div class="sn">${esc(s.note)}</div>` : ""}</div>`;
+}
+function dbq(u, el){
+  const D = u.dbq, p = P(u.id);
+  el.innerHTML = `
+  <section class="panel"><h2>${esc(D.title)}</h2><p class="muted">細閱以下資料，然後回答問題。開放題建議用「論點 → 申論 → 小結」組織答案。寫好後按「對照評分點」，逐點檢查自己有沒有寫到。</p>
+  ${D.sources.map(srcHTML).join("")}</section>
+  <section class="panel" id="qs">${D.qs.map(q => `
+    <div class="dq" data-id="${q.id}">
+      <div class="dq-h"><span class="qid">${q.id}.</span><span class="tag">${esc(q.skill)}</span><span class="mk2">${q.marks} 分${p.dbq[q.id] ? '<span class="mk">已作答</span>' : ""}</span></div>
+      <div class="qtext">${esc(q.q)}</div>
+      ${q.type === "mcq" ? `<div class="opts">${q.o.map((o,k)=>`<button class="opt" data-k="${k}"><span class="k">${LET[k]}</span><span>${esc(o)}</span></button>`).join("")}</div><div class="fbx"></div>`
+      : `<div class="scaffold">論點：先用一句直接回答題目。申論：引用資料（例如「根據資料A……」）並解釋。小結：扣回題目，總結論點。</div>
+         <textarea aria-label="${q.id} 題答案" placeholder="在這裏寫你的答案……">${esc(store.get("ans:"+u.id+q.id,""))}</textarea>
+         <div class="row" style="margin-top:8px"><button class="btn pri chk">對照評分點</button><button class="btn show">完整參考答案</button></div>
+         <div class="out"></div>`}
+    </div>`).join("")}</section>`;
+  el.querySelectorAll(".dq").forEach(box => {
+    const q = D.qs.find(x => x.id === box.dataset.id);
+    if (q.type === "mcq") {
+      box.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+        const k = +b.dataset.k, ok = k === q.a;
+        box.querySelectorAll(".opt").forEach(x => { x.disabled = true; const kk = +x.dataset.k;
+          if (kk === q.a) x.classList.add("ok"); else if (kk === k) x.classList.add("bad"); });
+        box.querySelector(".fbx").innerHTML = `<div class="fb"><b class="${ok?"ok":"bad"}">${ok ? "答對了。" : `答案是 ${LET[q.a]}。`}</b> ${q.hint ? esc(q.hint) : ""}</div>`;
+        p.dbq[q.id] = true; saveP();
+      });
+      return;
+    }
+    const ta = box.querySelector("textarea"), out = box.querySelector(".out");
+    ta.oninput = () => store.set("ans:"+u.id+q.id, ta.value);
+    box.querySelector(".show").onclick = () => {
+      const m = out.querySelector(".model");
+      if (m) { m.remove(); return; }
+      out.insertAdjacentHTML("beforeend", `<div class="model"><b>參考答案</b>\n${esc(q.model)}</div>`);
+    };
+    box.querySelector(".chk").onclick = () => {
+      const ans = ta.value.trim(), ag = grams(ans);
+      const ticks = store.get("tick:"+u.id+q.id, []);
+      const struct = [
+        ["引用資料", /資料\s*[A-Za-zＡ-Ｚ]|根據資料|參考資料|資料顯示|資料反映/.test(ans)],
+        ["運用數據或例子", /\d/.test(ans) || /例如|譬如|如資料/.test(ans)],
+        ["有小結或扣題", /由此可見|可見|因此|所以|總括|總結|綜上所述/.test(ans)]
+      ];
+      out.querySelector(".rub")?.remove();
+      out.insertAdjacentHTML("afterbegin", `<div class="rub">
+        <div class="rub-h"><b>評分點自評</b><span class="scv"></span></div>
+        ${ans ? `<div class="struct">答題結構：${struct.map(([n,ok]) => `<span class="${ok?"y":"n"}">${ok?"✓":"✗"} ${n}</span>`).join("")}</div>`
+              : `<p class="muted">你還未寫答案。可以先看評分點，再動筆。</p>`}
+        <ol class="pts">${q.points.map((pt,k) => `<li><label><input type="checkbox" data-k="${k}" ${ticks.includes(k)?"checked":""}>
+          <span>${esc(pt.t)} <em class="m">（${pt.m} 分）</em>${ans && overlap(pt.t, ag) >= .3 ? '<span class="found">答案中有相關字眼</span>' : ""}</span></label></li>`).join("")}</ol>
+        ${q.note ? `<p class="muted">${esc(q.note)}</p>` : ""}
+        <p class="muted" style="margin:0">剔選你答案已清楚寫出的評分點，意思相同但用字不同也可以剔選。「答案中有相關字眼」只是提示，請自己判斷。</p></div>`);
+      const rub = out.querySelector(".rub");
+      const upd = () => {
+        const t = [...rub.querySelectorAll("input:checked")].map(x => +x.dataset.k);
+        store.set("tick:"+u.id+q.id, t);
+        const s = Math.min(q.marks, t.reduce((a,k) => a + q.points[k].m, 0));
+        rub.querySelector(".scv").textContent = `自評 ${s} / ${q.marks} 分`;
+      };
+      rub.querySelectorAll("input").forEach(x => x.onchange = upd); upd();
+      p.dbq[q.id] = true; saveP();
+    };
+  });
+}
+
+/* 文字比對（不用 AI）：以兩字詞組比對中文 */
+const STOP2 = new Set(["根據","據資","資料","可見","由此","此可","因此","首先","其次","這樣","我們","他們","的確","甚麼","是甚","麼是","什麼","如何","怎樣","為何","為甚","哪些","有哪","有甚","意思","解釋","請問","一個","是指","以及","因為","所以","可以","的是","是否"]);
+function grams(s){
+  const out = new Set(), t = String(s).toLowerCase();
+  (t.match(/[\u3400-\u9fff]+/g) || []).forEach(run => {
+    if (run.length === 1) { out.add(run); return; }
+    for (let i = 0; i < run.length - 1; i++) { const g = run.slice(i, i + 2); if (!STOP2.has(g)) out.add(g); }
+  });
+  (t.match(/[a-z]{2,}|\d+(?:\.\d+)?/g) || []).forEach(w => out.add(w));
+  return out;
+}
+function overlap(text, ag){
+  const pg = grams(text); if (pg.size < 3) return 0;
+  let n = 0; pg.forEach(g => { if (ag.has(g)) n++; });
+  return n / pg.size;
+}
+function hl(text, gs){
+  const s = String(text), on = new Array(s.length).fill(false);
+  for (let i = 0; i < s.length - 1; i++) if (gs.has(s.slice(i, i + 2).toLowerCase())) on[i] = on[i + 1] = true;
+  let h = "", open = false;
+  for (let i = 0; i < s.length; i++) {
+    if (on[i] && !open) { h += "<mark>"; open = true; }
+    if (!on[i] && open) { h += "</mark>"; open = false; }
+    h += esc(s[i]);
+  }
+  return h + (open ? "</mark>" : "");
+}
+
+/* 課本搜尋 */
+let INDEX = null;
+function buildIndex(){
+  INDEX = [];
+  UNITS.forEach(u => {
+    u.vocab.forEach(v => INDEX.push({u, kind:v[4] ? "延伸詞彙" : "重要詞彙", title:v[0], sub:v[1], text:v[3], page:v[2], link:`#${slug(u.id)}-vocab`}));
+    const walk = (n, path) => {
+      const kids = n.c || [];
+      if (path.length) INDEX.push({u, kind:"單元總結", title:n.t, path:path.slice(1).join(" › ") || "單元總結", text:kids.map(k => k.t).join("；"), link:`#${slug(u.id)}`});
+      kids.forEach(k => walk(k, [...path, n.t]));
+    };
+    walk(u.map, []);
+    u.mcq.forEach(q => INDEX.push({u, kind:"課前小測", title:q.q.replace(/\n/g, " "), text:`答案：${q.o[q.a]}。${q.e || ""}`, link:`#${slug(u.id)}-quiz`}));
+  });
+  INDEX.forEach(d => {
+    d.tg = grams(d.title + " " + (d.sub || ""));
+    d.xg = grams(d.text + " " + (d.path || ""));
+    d.full = (d.title + " " + (d.sub || "") + " " + d.text).toLowerCase();
+  });
+}
+function search(q, scopeUnit){
+  if (!INDEX) buildIndex();
+  const clean = q.replace(/[？?！!。，,、\s「」『』（）()]/g, "")
+    .replace(/^(請問|甚麼是|什麼是|何謂|為甚麼|為什麼)/, "")
+    .replace(/(是甚麼|是什麼|的意思|是指甚麼|有哪些|有甚麼|是指)$/, "").toLowerCase();
+  const qg = grams(q);
+  if (!qg.size && !clean) return [];
+  const kindRank = {"重要詞彙":0, "延伸詞彙":1, "單元總結":2, "課前小測":3};
+  const res = [];
+  for (const d of INDEX) {
+    if (scopeUnit && d.u !== scopeUnit) continue;
+    let s = 0;
+    qg.forEach(g => { if (d.tg.has(g)) s += 3; else if (d.xg.has(g)) s += 1; });
+    if (clean.length >= 2) {
+      const tt = d.title.toLowerCase().replace(/[「」]/g, "");
+      if ((d.kind === "重要詞彙" || d.kind === "延伸詞彙") && tt === clean) s += 30;
+      else if (tt.includes(clean)) s += 12;
+      else if (d.full.includes(clean)) s += 5;
+    }
+    if (s > 0) res.push({d, s});
+  }
+  const need = Math.max(2, Math.ceil(qg.size * 0.5));
+  return res.filter(r => r.s >= need)
+    .sort((a, b) => b.s - a.s || kindRank[a.d.kind] - kindRank[b.d.kind]).slice(0, 10);
+}
+function searchUI(el, u){
+  const sugg = u ? [...u.vocab.slice(0, 6).map(v => v[0]), ...u.questions.slice(0, 2)] : UNITS.map(x => x.vocab[1][0]);
+  el.innerHTML = `<section class="panel"><h2>課本搜尋</h2>
+    <p class="muted">輸入關鍵詞或問題，例如「稅基」或「甚麼是情緒勒索」，網站會在課本的重要詞彙、單元總結和課前小測中找出相關內容，並附上單元和頁碼。</p>
+    <div class="sbox"><input type="search" class="sq" placeholder="輸入關鍵詞或問題" aria-label="搜尋課本內容"><button class="btn pri sgo">搜尋</button></div>
+    ${u ? `<div class="row scope"><label><input type="radio" name="sc-${u.id}" value="u" checked> 只搜本單元</label><label><input type="radio" name="sc-${u.id}" value="a"> 搜全部 12 個單元</label></div>` : ""}
+    <div class="chips">${sugg.map(s => `<button class="chip">${esc(s)}</button>`).join("")}</div></section>
+    <div class="sres" aria-live="polite"></div>`;
+  const inp = el.querySelector(".sq"), out = el.querySelector(".sres");
+  const run = () => {
+    const q = inp.value.trim();
+    if (!q) { out.innerHTML = ""; return; }
+    const only = !!u && el.querySelector(`input[name="sc-${u.id}"]:checked`).value === "u";
+    const r = search(q, only ? u : null), qg = grams(q);
+    out.innerHTML = r.length
+      ? `<p class="muted">找到 ${r.length} 項相關內容${r.length === 10 ? "（只顯示最相關的 10 項）" : ""}</p>` + r.map(({d}) => `
+        <a class="hit" href="${d.link}" style="--hc:${DOMAIN[d.u.domain].c}">
+          <div class="hit-h"><span class="tag">${d.kind}</span><span class="hu">單元 ${d.u.id} ${esc(d.u.title)}</span>${d.page ? `<span class="muted">課本第 ${d.page} 頁</span>` : ""}</div>
+          ${d.path ? `<div class="muted" style="font-size:13px">${esc(d.path)}</div>` : ""}
+          <div class="ht">${hl(d.title, qg)}${d.sub ? ` <span class="en">${esc(d.sub)}</span>` : ""}</div>
+          ${d.text ? `<div class="hx">${hl(d.text, qg)}</div>` : ""}
+        </a>`).join("")
+      : `<section class="panel"><p style="margin-top:0">找不到與「${esc(q)}」相關的內容。</p><p class="muted" style="margin:0">試用較短的關鍵詞，例如「稅基」${only ? "，或改為搜全部 12 個單元" : ""}。</p></section>`;
+  };
+  el.querySelector(".sgo").onclick = run;
+  inp.onkeydown = e => { if (e.key === "Enter" && !e.isComposing) { e.preventDefault(); run(); } };
+  el.querySelectorAll(".chip").forEach(c => c.onclick = () => { inp.value = c.textContent; run(); });
+  el.querySelectorAll(".scope input").forEach(x => x.onchange = run);
+}
+
+route();
+</script>
+</body>
+</html>
